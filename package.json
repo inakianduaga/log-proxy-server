@@ -1,0 +1,65 @@
+{
+  "name": "logsProxyServer",
+  "description": "A nodejs express server used to log client logs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/inakianduaga/log-proxy-server",
+  "private": true,
+  "author": {
+    "name": "Inaki Anduaga",
+    "email": "inaki@inakianduaga.com",
+    "url": "www.inakianduaga.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inakianduaga/log-proxy-server"
+  },
+  "bugs": {
+    "url": "https://github.com/inakianduaga/log-proxy-server/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/inakianduaga/log-proxy-server/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "express": "^4.10.6",
+    "body-parser": "~1.8.1",
+    "cookie-parser": "~1.3.3",
+    "morgan": "~1.3.0",
+    "serve-favicon": "~2.1.3",
+    "debug": "~2.0.0",
+    "jade": "~1.6.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.0",
+    "gulp-load-plugins": "^0.6.0",
+    "gulp-if": "^1.2.5",
+    "gulp-help": "^1.2.0",
+    "del": "^1.1.1",
+    "minimist": "^1.1.0",
+    "lazypipe": "^0.2.2",
+    "gulp-util": "^3.0.1",
+    "require-dir": "^0.1.0",
+    "q": "^1.1.1",
+    "gulp-notify": "^2.0.0",
+    "gulp-filter": "2.0.0",
+    "gulp-awspublish": "^0.0.23",
+    "gulp-awspublish-router": "^0.1.0",
+    "gulp-git": "0.5.5",
+    "gulp-bump": "^0.1.11",
+    "concurrent-transform": "^1.0.0",
+    "gulp-jshint": "^1.8.0",
+    "jshint-stylish": "^0.4.0",
+    "gulp-shell": "^0.2.11",
+    "gulp-nodemon" : "^1.0.4",
+    "gulp-tar" : "^1.3.2",
+    "gulp-gzip" : "^0.0.8",
+    "aws-sdk" : "^2.1.4",
+    "jasmine-node" : "2.0.0-beta4",
+    "control-c" : "^0.0.3"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
