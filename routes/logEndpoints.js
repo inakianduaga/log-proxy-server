@@ -2,7 +2,7 @@
 
 var express = require('express'),
     router = express.Router(),
-    logController = require('./../controllers/logController');
+    logController = require('./../controllers/logger');
 
 router.post('/log', logController.store);
 
