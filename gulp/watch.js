@@ -2,7 +2,6 @@
 
 var gulp = require('gulp'),
     notifications = require('./lib/notifications'),
-    helper = require('./lib/helper'),
     events = require('./lib/events');
 
 //---------------
