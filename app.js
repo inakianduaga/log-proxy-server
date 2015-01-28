@@ -19,6 +19,9 @@ var express = require('express'),
     //Settings
     settings = require('./services/settings'),
 
+    //Winston transports
+    winstonTransports = require('./services/winstonTransports'),
+
     //Main app
     app = express();
 
@@ -34,6 +37,9 @@ app.use(cookieParser());
 
 //Settings Middleware for all routes
 app.use(settings.parseRequestSettings);
+
+//Register all winston transport middleware
+app.use(winstonTransports.registerTransportsMiddleware);
 
 //Register routes (as middleware layer through express.Router())
 app.use(logEndpoints);
