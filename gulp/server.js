@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     }),
     environment = require('./lib/environment.js');
 
-gulp.task('watchAndServe', 'Launch the server on development mode, autoreloads it when there are code changes, plus registers cumulative watch task', ['watch'], function () {
+gulp.task('serve', 'Launch the server on development mode, autoreloads it when there are code changes', function () {
 
   var nodemonConfiguration = {
     script: './server.js',
@@ -29,3 +29,4 @@ gulp.task('watchAndServe', 'Launch the server on development mode, autoreloads i
     'port': 'The port # the server should listen to. Defaults to 3000'
   }
 });
+

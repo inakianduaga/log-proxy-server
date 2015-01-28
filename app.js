@@ -11,9 +11,13 @@ var express = require('express'),
     //Modular Route definitions
     logEndpoints = require('./routes/logEndpoints'),
     miscRoutes = require('./routes/miscellaneous'),
+    settingsRoutes = require('./routes/settings'),
 
     //Error handler service
     errorHandler = require('./services/errorHandler'),
+
+    //Settings
+    settings = require('./services/settings'),
 
     //Main app
     app = express();
@@ -28,9 +32,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public'))); //serve public files
 
+//Settings Middleware for all routes
+app.use(settings.parseRequestSettings);
+
 //Register routes (as middleware layer through express.Router())
 app.use(logEndpoints);
 app.use(miscRoutes);
+app.use(settingsRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

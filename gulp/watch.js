@@ -23,4 +23,11 @@ gulp.task('rebuildOnPackageJsonChange', false, function(){
 gulp.task('watch', 'Master watch task, adds cumulative watches (test/lint)', ['tdd', 'lintWatcher', 'rebuildOnPackageJsonChange'], function () {
 });
 
+gulp.task('watchAndServe', 'Launch the server on development mode, autoreloads it when there are code changes, plus registers cumulative watch task', ['watch', 'serve'], function(){}, {
+  options: {
+    'port': 'The port # the server should listen to. Defaults to 3000'
+  }
+});
+
+
 

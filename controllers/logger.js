@@ -12,4 +12,5 @@ module.exports = {
     //TODO: Pass payload to logging mechanism
   }
 
+
 };

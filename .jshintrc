@@ -21,6 +21,7 @@
   "validthis": true,
   "globalstrict" : true,
   "globals": {
+    "require" : true,
     "module" : true,
     "history" : true,
     "_": true,
