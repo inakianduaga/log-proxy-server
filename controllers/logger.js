@@ -1,6 +1,6 @@
 'use strict';
 
-var winston = require('winston'),
+var winstonLoggerService = require('./../services/winstonLogger'),
     settingsService = require('./../services/settings');
 
 /**
@@ -13,10 +13,11 @@ module.exports = {
    */
   store: function (req, res) {
 
-    var payload = req.body,
+    var winstonLogger = winstonLoggerService.getLogger(),
+        payload = req.body,
         level = settingsService.getRequestLogLevel();
 
-    winston.log(level, payload);
+    winstonLogger.log(level, payload);
 
     res.end();
   }
