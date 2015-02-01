@@ -8,9 +8,9 @@ exports.settings = {
     rsyslog: {
       enabled:  true,
       settings: {
-        host:     process.env.rsyslogHost,
-        port:     process.env.rsyslogPort,
-        hostname: process.env.hostname,
+        host:     process.env.RSYSLOG_HOST,
+        port:     process.env.RSYSLOG_PORT,
+        hostname: process.env.RSYSLOG_HOSTNAME,
         facility: 0,   // Facility index (default 0, valid values are from 0 to 23)
         protocol: 'U', // TCP or UDP (values can be "U" or "T", default is "U")
         tag:      'winston', // A tag to name the application for easy log filtering (default is 'winston')
@@ -21,7 +21,7 @@ exports.settings = {
       enabled:  false,
       settings: {
         //Required parameters
-        token:         process.env.hipchatToken,
+        token:         process.env.HIPCHAT_TOKEN,
         room:          '',
         from:          'log-server', //15 chars max
         //Optional parameters
