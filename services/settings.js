@@ -19,10 +19,16 @@ var _ = require('lodash'),
  */
 var parseRequestSettings = function(req, res, next) {
 
+  //HERE WE NEED TO GET THE REQUEST PARAMETER ON THE LOG ROUTE
   var requestSettings = req.get(requestHeaderSettingsField) ? JSON.parse(req.get(requestHeaderSettingsField)) : {};
 
   //Filter out private keys from the request
   objectUtils.removeKeysFromObject(requestSettings, defaults.privateSettingsKeysList);
+
+
+
+
+
 
   settings = _.merge(defaults.settings, requestSettings);
 
