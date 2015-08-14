@@ -24,11 +24,11 @@ module Config.DefaultSettings {
       hipchat: {
         enabled:  false,
         settings: {
-          //Required parameters
+          // Required parameters
           token:         process.env.HIPCHAT_TOKEN,
           room:          '',
-          from:          'log-server', //15 chars max
-          //Optional parameters
+          from:          'log-server', // 15 chars max
+          // Optional parameters
           level:         '',
           notify:        false,
           color:         'yellow',

@@ -1,5 +1,5 @@
 /// <reference path="./../../typings/tsd.d.ts" />
-//-- A service for instantiating winston loggers w/ attached transports based on detected settings
+// A service for instantiating winston loggers w/ attached transports based on detected settings
 
 'use strict';
 
@@ -15,18 +15,18 @@ module Services.WinstonLogger {
       rsyslog : require('winston-rsyslog').Rsyslog
     },
     settings = settingsService.getSettings(),
-    loggerInstance : winston.LoggerInstance;
+    loggerInstance: winston.LoggerInstance;
 
   /**
    * Registers winston transports on a winston logger instance
    */
   function registerTransports(logger: winston.LoggerInstance): winston.LoggerInstance {
 
-    //Register every transport that is enabled, with the transport settings
+    // Register every transport that is enabled, with the transport settings
     for (let transport in transports) {
       if (transports.hasOwnProperty(transport)) {
 
-        if(settings.transports[transport].enabled) {
+        if (settings.transports[transport].enabled) {
           logger.add(transports[transport], settings.transports[transport].settings);
         }
 

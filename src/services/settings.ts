@@ -2,8 +2,8 @@
 
 'use strict';
 
-//-- Logger settings middleware
-//-- Builds the logging configuration based on default settings & request settings
+// Logger settings middleware
+// Builds the logging configuration based on default settings & request settings
 
 import _ = require('lodash');
 import defaults = require('../config/defaultSettings');
@@ -14,7 +14,7 @@ module Services.Settings {
   let
     // requestHeaderSettingsField = defaults.settings.settingsRequestHeaderField, TODO: THIS IS NOW REPLACED BY A SETTINGS ID PARAMETER!
     settings,
-    requestLogLevel:string;
+    requestLogLevel: string;
 
   /**
    * Builds the logger settings based on defaults and optional request settings header
@@ -25,10 +25,10 @@ module Services.Settings {
    */
   export function parseRequestSettings(req, res, next) {
 
-    //TODO: HERE WE NEED TO GET THE REQUEST PARAMETER ON THE LOG ROUTE
+    // TODO: HERE WE NEED TO GET THE REQUEST PARAMETER ON THE LOG ROUTE
     let requestSettings = req.get(requestHeaderSettingsField) ? JSON.parse(req.get(requestHeaderSettingsField)) : {};
 
-    //Filter out private keys from the request
+    // Filter out private keys from the request
     objectUtils.removeKeysFromObject(requestSettings, defaults.privateSettingsKeysList);
 
     settings = _.merge(defaults.settings, requestSettings);
@@ -68,4 +68,3 @@ module Services.Settings {
 }
 
 export = Services.Settings;
-

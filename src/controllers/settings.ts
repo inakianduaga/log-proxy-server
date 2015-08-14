@@ -2,7 +2,7 @@
 
 'use strict';
 
-let settings = require('../services/settings');
+import settings = require('../services/settings');
 
 /**
  * Miscellaneous controller

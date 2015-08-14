@@ -1,17 +1,17 @@
 /// <reference path="./../../typings/node/node.d.ts" />
-//-- EXAMPLE SETTINGS FILE. Copy your actual settings to `settings.ts` file
+// EXAMPLE SETTINGS FILE. Copy your actual settings to `settings.ts` file
 
 'use strict';
 
 module Config.SettingsExample {
 
   /**
-  * Setting groups
-  * We can use any of the groups defined above as a log route parameter.
-  */
+   * Setting groups
+   * We can use any of the groups defined above as a log route parameter.
+   */
   export const settings = {
 
-    //This group disables the hipchat logging
+    // This group disables the hipchat logging
     noHipchat : {
       transports: {
         hipchat: {
@@ -20,7 +20,7 @@ module Config.SettingsExample {
       }
     },
 
-    //This group disables the hipchat logging
+    // This group is for a ficticious angular app
     angularApp : {
       transports:                 {
         rsyslog: {
@@ -32,7 +32,7 @@ module Config.SettingsExample {
         hipchat: {
           enabled:  true,
           settings: {
-            //Required parameters
+            // Required parameters
             token: process.env.HIPCHAT_TOKEN,
             room: 'angular-app-room'
           }

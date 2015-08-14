@@ -34,13 +34,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public'))); //serve public files
 
-//Settings Middleware for all routes
+// Settings Middleware for all routes
 app.use(settings.parseRequestSettings);
 
-//Register a new winston logger for each request
+// Register a new winston logger for each request
 app.use(winstonLogger.instantiateNewLogger);
 
-//Register routes (as middleware layer through express.Router())
+// Register routes (as middleware layer through express.Router())
 app.use(logEndpoints);
 app.use(miscRoutes);
 app.use(settingsRoutes);
