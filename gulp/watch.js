@@ -1,31 +1,37 @@
 'use strict';
 
-var gulp = require('gulp'),
-    notifications = require('./lib/notifications'),
-    events = require('./lib/events');
-
-//---------------
-// Tasks
-//---------------
+var gulp = require('gulp');
 
 gulp.task('tdd', 'Runs unit tests when file changes are detected', function () {
-  gulp.watch('**/*.js', ['test']);
+  gulp.watch('dist/**/*.js', ['test']);
 });
 
-gulp.task('lintWatcher', false, function () {
-  gulp.watch('**/*.js', ['lint']);
+/**
+ * Watches for ts files
+ */
+gulp.task('tsWatcher', false, function () {
+  gulp.watch('**/*.ts', ['lint', 'compile']);
 });
 
-gulp.task('rebuildOnPackageJsonChange', false, function(){
-  gulp.watch('package.json', ['docker:build']);
+/**
+ * Watches for non-ts files
+ */
+gulp.task('nonTsWatcher', false, function () {
+  gulp.watch(['src/.env','src/**/*', '!src/**/*.ts'], ['copyNonTs']);
 });
 
-gulp.task('watch', 'Master watch task, adds cumulative watches (test/lint)', ['tdd', 'lintWatcher', 'rebuildOnPackageJsonChange'], function () {
+/**
+ * Combined watcher
+ */
+gulp.task('watch', 'Master watch task, adds cumulative watches (test/lint)', ['tdd', 'tsWatcher', 'nonTsWatcher'], function () {
 });
 
+/**
+ * Combined watch and server
+ */
 gulp.task('watchAndServe', 'Launch the server on development mode, autoreloads it when there are code changes, plus registers cumulative watch task', ['watch', 'serve'], function(){}, {
   options: {
-    'port': 'The port # the server should listen to. Defaults to 3000'
+    'port': 'The port # the server should listen to. Defaults to value specified in .env file under PORT, or 3000 if .env not present'
   }
 });
 
