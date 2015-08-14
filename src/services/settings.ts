@@ -1,18 +1,20 @@
+/// <reference path="./../../typings/tsd.d.ts" />
+
 'use strict';
 
 //-- Logger settings middleware
 //-- Builds the logging configuration based on default settings & request settings
 
 import _ = require('lodash');
+import defaults = require('../config/defaultSettings');
+import objectUtils = require('../utils/object');
 
 module Services.Settings {
 
   let
-    defaults = require('../config/defaultSettings'),
-    objectUtils = require('../utils/jsObject'),
-    requestHeaderSettingsField = defaults.settings.settingsRequestHeaderField,
+    // requestHeaderSettingsField = defaults.settings.settingsRequestHeaderField, TODO: THIS IS NOW REPLACED BY A SETTINGS ID PARAMETER!
     settings,
-    requestLogLevel;
+    requestLogLevel:string;
 
   /**
    * Builds the logger settings based on defaults and optional request settings header
@@ -23,7 +25,7 @@ module Services.Settings {
    */
   export function parseRequestSettings(req, res, next) {
 
-    //HERE WE NEED TO GET THE REQUEST PARAMETER ON THE LOG ROUTE
+    //TODO: HERE WE NEED TO GET THE REQUEST PARAMETER ON THE LOG ROUTE
     let requestSettings = req.get(requestHeaderSettingsField) ? JSON.parse(req.get(requestHeaderSettingsField)) : {};
 
     //Filter out private keys from the request

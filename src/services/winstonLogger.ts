@@ -1,8 +1,11 @@
-'use strict';
-
+/// <reference path="./../../typings/tsd.d.ts" />
 //-- A service for instantiating winston loggers w/ attached transports based on detected settings
 
+'use strict';
+
 import winston = require('winston');
+import express = require('express');
+import settingsService = require('./settings');
 
 module Services.WinstonLogger {
 
@@ -11,22 +14,13 @@ module Services.WinstonLogger {
       hipchat : require('winston-hipchat').Hipchat,
       rsyslog : require('winston-rsyslog').Rsyslog
     },
-    settingsService = require('./settings'),
-    loggerInstance;
+    settings = settingsService.getSettings(),
+    loggerInstance : winston.LoggerInstance;
 
   /**
    * Registers winston transports on a winston logger instance
-   *
-   * @param logger a winston logger instance
-   * @param req
-   * @param res
-   * @param next
-   *
-   * @returns {Object} a winston logger
    */
-  function registerTransports(logger) {
-
-    let settings = settingsService.getSettings();
+  function registerTransports(logger: winston.LoggerInstance): winston.LoggerInstance {
 
     //Register every transport that is enabled, with the transport settings
     for (let transport in transports) {
@@ -49,7 +43,7 @@ module Services.WinstonLogger {
    * @param res
    * @param next
    */
-  export function instantiateNewLogger(req, res, next) {
+  export function instantiateNewLogger(req: express.Request, res: express.Response, next) {
 
     loggerInstance = new (winston.Logger)();
     registerTransports(loggerInstance);
@@ -59,10 +53,8 @@ module Services.WinstonLogger {
 
   /**
    * Returns the current logger instance
-   *
-   * @returns {Object}
    */
-  export function getLogger() {
+  export function getLogger(): winston.LoggerInstance {
     console.log(loggerInstance);
     return loggerInstance;
   };
