@@ -37,6 +37,12 @@
     },
     "superagent/superagent.d.ts": {
       "commit": "a95ee80de0d4a56b7c5fc82ca19145fc239e76f4"
+    },
+    "winston/winston.d.ts": {
+      "commit": "a95ee80de0d4a56b7c5fc82ca19145fc239e76f4"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "a95ee80de0d4a56b7c5fc82ca19145fc239e76f4"
     }
   }
 }

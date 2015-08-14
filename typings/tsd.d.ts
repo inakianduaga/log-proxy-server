@@ -10,3 +10,5 @@
 /// <reference path="superagent/superagent.d.ts" />
 /// <reference path="supertest/supertest.d.ts" />
 /// <reference path="dotenv/dotenv.d.ts" />
+/// <reference path="winston/winston.d.ts" />
+/// <reference path="lodash/lodash.d.ts" />

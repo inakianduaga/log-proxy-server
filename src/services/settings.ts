@@ -3,9 +3,11 @@
 //-- Logger settings middleware
 //-- Builds the logging configuration based on default settings & request settings
 
+import _ = require('lodash');
+
 module Services.Settings {
 
-  let _ = require('lodash'),
+  let
     defaults = require('../config/defaultSettings'),
     objectUtils = require('../utils/jsObject'),
     requestHeaderSettingsField = defaults.settings.settingsRequestHeaderField,

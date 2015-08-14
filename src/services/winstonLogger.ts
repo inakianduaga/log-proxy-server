@@ -2,9 +2,11 @@
 
 //-- A service for instantiating winston loggers w/ attached transports based on detected settings
 
+import winston = require('winston');
+
 module Services.WinstonLogger {
 
-  let winston = require('winston'),
+  let
     transports = {
       hipchat : require('winston-hipchat').Hipchat,
       rsyslog : require('winston-rsyslog').Rsyslog
