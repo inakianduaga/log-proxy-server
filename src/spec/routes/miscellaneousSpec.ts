@@ -3,7 +3,7 @@
 import request = require('supertest');
 import app = require('./../../app');
 
-describe('Mocha: Example routes', () => {
+describe('Miscellaneous routes - ', () => {
 
   it('should get 200 response from healthCheck', done => {
     request(app)
