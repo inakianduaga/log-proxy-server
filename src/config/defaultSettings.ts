@@ -4,10 +4,59 @@
 
 module Config.DefaultSettings {
 
+  // enum RsyslogProtocol { U, T }
+  // enum HipchatMessageFormat { html }
+  // enum RequestLogLevel {silly, debug, verbose, info, warn, error}
+
+  interface Settings {
+    transports: {
+      RsyslogTransport?,
+      HipchatTransport?
+    },
+    defaultRequestLogLevel: string
+  }
+
+  interface GenericTransport {
+    [id : string]: {
+      enabled: boolean,
+      settings: any
+    }
+  }
+
+  interface RsyslogTransport extends GenericTransport {
+    rsyslog: {
+        enabled:  boolean,
+        settings: {
+          host:     string,
+          port:     number,
+          hostname: string,
+          facility: number, // Facility index (default 0, valid values are from 0 to 23)
+          protocol: string, // TCP or UDP (values can be "U" or "T", default is "U")
+          tag:      string, // A tag to name the application for easy log filtering (default is 'winston')
+          level   : string
+        }
+    }
+  }
+
+  interface HipchatTransport extends GenericTransport {
+    hipchat: {
+        enabled:  boolean,
+        settings: {
+          token: string,
+          room: string,
+          from: string, // 15 chars max
+          level?:         string,
+          notify?:        boolean,
+          color?:         string,
+          messageFormat?: string
+        }
+      }
+  }
+
   /**
    * Default settings for the logger
    */
-  export const settings = {
+  export const settings: Settings = {
     transports:                 {
       rsyslog: {
         enabled:  true,
