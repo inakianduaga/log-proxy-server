@@ -5,6 +5,7 @@
 // Logger settings middleware
 // Builds the logging configuration based on default settings & request settings
 
+import express = require('express');
 import _ = require('lodash');
 import defaults = require('../config/defaultSettings');
 import objectUtils = require('../utils/object');
@@ -18,12 +19,8 @@ module Services.Settings {
 
   /**
    * Builds the logger settings based on defaults and optional request settings header
-   *
-   * @param req
-   * @param res
-   * @param next
    */
-  export function parseRequestSettings(req, res, next) {
+  export function parseRequestSettings(req: express.Request, res: express.Response, next: Function) {
 
     // TODO: HERE WE NEED TO GET THE REQUEST PARAMETER ON THE LOG ROUTE
     let requestSettings = req.get(requestHeaderSettingsField) ? JSON.parse(req.get(requestHeaderSettingsField)) : {};
@@ -40,10 +37,8 @@ module Services.Settings {
 
   /**
    * Returns the log level of the current request based on request configuration / defaults
-   *
-   * @returns string
    */
-  export function getRequestLogLevel() {
+  export function getRequestLogLevel(): string {
     return requestLogLevel;
   };
 

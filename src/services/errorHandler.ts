@@ -1,20 +1,15 @@
 'use strict';
 
-// Error handler service
+import express = require('express');
 
 module Services.ErrorHandler {
 
   /**
    * Generates a 500 response
    *
-   * @param err
-   * @param req
-   * @param res
-   * @param next
    * @param {Boolean=} includeStackTrace Whether to include a stack trace in the generated response
    */
-  let handler = (err, req, res, next, includeStackTrace) => {
-
+  let handler = (err: Error, req: express.Request, res: express.Response, next: Function, includeStackTrace: boolean) => {
     res.status(res.statusCode || 500);
     res.render('error', {
       message: err.message,
@@ -24,25 +19,15 @@ module Services.ErrorHandler {
 
   /**
    * 500 error development response
-   *
-   * @param err
-   * @param req
-   * @param res
-   * @param next
    */
-  export function development (err, req, res, next) {
+  export function development (err: Error, req: express.Request, res: express.Response, next: Function) {
     return handler(err, req, res, next, true);
   };
 
   /**
    * 500 error production response
-   *
-   * @param err
-   * @param req
-   * @param res
-   * @param next
    */
-  export function production (err, req, res, next) {
+  export function production (err: Error, req: express.Request, res: express.Response, next: Function) {
     return handler(err, req, res, next, false);
   };
 

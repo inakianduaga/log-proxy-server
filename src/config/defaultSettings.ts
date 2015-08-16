@@ -8,55 +8,55 @@ module Config.DefaultSettings {
   // enum HipchatMessageFormat { html }
   // enum RequestLogLevel {silly, debug, verbose, info, warn, error}
 
-  interface Settings {
+  interface ISettings {
     transports: {
-      RsyslogTransport?,
-      HipchatTransport?
-    },
-    defaultRequestLogLevel: string
-  }
+      IRsyslogTransport?,
+      IHipchatTransport?
+    };
+    defaultRequestLogLevel: string;
+  };
 
-  interface GenericTransport {
-    [id : string]: {
+  interface IGenericTransport {
+    [id: string]: {
       enabled: boolean,
       settings: any
-    }
-  }
+    };
+  };
 
-  interface RsyslogTransport extends GenericTransport {
+  interface IRsyslogTransport extends IGenericTransport {
     rsyslog: {
-        enabled:  boolean,
-        settings: {
-          host:     string,
-          port:     number,
-          hostname: string,
-          facility: number, // Facility index (default 0, valid values are from 0 to 23)
-          protocol: string, // TCP or UDP (values can be "U" or "T", default is "U")
-          tag:      string, // A tag to name the application for easy log filtering (default is 'winston')
-          level   : string
-        }
-    }
-  }
-
-  interface HipchatTransport extends GenericTransport {
-    hipchat: {
-        enabled:  boolean,
-        settings: {
-          token: string,
-          room: string,
-          from: string, // 15 chars max
-          level?:         string,
-          notify?:        boolean,
-          color?:         string,
-          messageFormat?: string
-        }
+      enabled: boolean,
+      settings: {
+        host: string,
+        port: number,
+        hostname: string,
+        facility: number, // Facility index (default 0, valid values are from 0 to 23)
+        protocol: string, // TCP or UDP (values can be "U" or "T", default is "U")
+        tag: string, // A tag to name the application for easy log filtering (default is 'winston')
+        level: string
       }
-  }
+    };
+  };
+
+  interface IHipchatTransport extends IGenericTransport {
+    hipchat: {
+      enabled: boolean,
+      settings: {
+        token: string,
+        room: string,
+        from: string, // 15 chars max
+        level?: string,
+        notify?: boolean,
+        color?: string,
+        messageFormat?: string
+      }
+    };
+  };
 
   /**
    * Default settings for the logger
    */
-  export const settings: Settings = {
+  export const settings: ISettings = {
     transports:                 {
       rsyslog: {
         enabled:  true,
