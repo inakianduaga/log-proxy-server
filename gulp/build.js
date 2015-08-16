@@ -38,7 +38,7 @@ gulp.task('copyNonTs', false, [], function () {
  * Precopies the swagger-ui assets into the dist folder
  */
 gulp.task('copySwaggerUI', false, [], function () {
-  return gulp.src(['node_modules/swaggerize-ui/node_modules/swagger-ui/dist/**/*'])
+  return gulp.src(['node_modules/swagger-ui/dist/**/*'])
     .pipe(gulp.dest('dist/swagger/dist'));
 });
 
@@ -78,11 +78,11 @@ gulp.task('compile', false, function () {
 /**
  * Build the server app
  */
-gulp.task('build', 'Builds the server app (compiles & copies)', function (callback) {
+gulp.task('build', 'Builds the server app (compiles & copies)', [], function (callback) {
   return $.runSequence('clean',
     ['compile'],
     'copyNonTs',
-    'copySwaggerUI',
+    // 'copySwaggerUI',
     'convertSwaggerSpecFromYamlToJson',
     callback);
 });

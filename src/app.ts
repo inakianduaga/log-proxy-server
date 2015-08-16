@@ -14,6 +14,7 @@ import bodyParser = require('body-parser');
 import logEndpoints = require('./routes/logEndpoints');
 import miscRoutes = require('./routes/miscellaneous');
 import settingsRoutes = require('./routes/settings');
+import swaggerRoutes = require('./routes/swagger');
 
 // Services
 import errorHandler = require('./services/errorHandler');
@@ -32,6 +33,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public'))); //serve public files
+
+app.use(swaggerRoutes);
 
 // Settings Middleware for all routes
 app.use(settings.parseRequestSettings);
