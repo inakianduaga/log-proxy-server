@@ -41,6 +41,10 @@ Remember to map the port from the host to the container to be able to access the
 
 `docker run -t --rm -p 3000:3000 -v /absolute/path/to/this/folder:/app log-proxy-server serve --port=3000`
 
+## Documentation
+
+Visit the swagger API endpoint on `/docs` to see/interact with the API.
+
 ## Developing
 
 - Use the `gulp watchAndServe` task (or `docker run -t --rm -p 3000:3000 -v /absolute/path/to/this/folder:/app log-proxy-server watchAndServe --port=3000` when using the dockerized container)
