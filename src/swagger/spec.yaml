@@ -1,0 +1,52 @@
+---
+  swagger: "2.0"
+  info:
+    title: "Log proxy server"
+    description: "Allows clients to easily log to different transports simultaneously using a single API"
+    version: "1.0.0"
+  host: "localhost:3000"
+  schemes:
+    - "https"
+  basePath: "/"
+  produces:
+    - "application/json"
+  paths:
+    /log:
+      post:
+        summary: "Logs a POST payload"
+        description: "The log endpoint will log the post payload to all configured endpoints. Log transports and their settings can be configured through a header json_encoded object\n"
+        parameters:
+          -
+            name: "settings"
+            in: "header"
+            description: "json_encoded settings"
+            required: true
+            type: "string"
+        tags:
+          - "TestTag"
+        responses:
+          200:
+            description: "empty acknowledgement"
+            schema:
+              type: "string"
+          default:
+            description: "Unexpected error"
+            schema:
+              type: "string"
+  definitions:
+    Settings:
+      properties:
+        dummy:
+          type: "boolean"
+    RsyslogSettings:
+      properties:
+        tag:
+          type: "string"
+          description: "A tag to name the application for easy log filtering"
+          default: "winston"
+    Rsyslog:
+      properties:
+        enabled:
+          type: "boolean"
+        settings:
+          $ref: "#/definitions/RsyslogSettings"
