@@ -2,19 +2,21 @@
 
 'use strict';
 
-module Config.DefaultSettings {
+module Config.BaseSettings {
 
   // enum RsyslogProtocol { U, T }
   // enum HipchatMessageFormat { html }
   // enum RequestLogLevel {silly, debug, verbose, info, warn, error}
 
-  interface ISettings {
-    transports: Array<IGenericTransport>;
+  interface IBaseSettings {
+    transports: {
+      hipchat?: IHipchatTransport,
+      rsyslog?: IRsyslogTransport,
+    };
     defaultRequestLogLevel: string;
   };
 
   interface IGenericTransport {
-    name: string,
     enabled: boolean,
     settings: any
   };
@@ -46,37 +48,35 @@ module Config.DefaultSettings {
   /**
    * Default settings for the logger
    */
-  export const settings: ISettings = {
-    transports: [
-      {
-        name: 'rsyslog',
-        enabled:  true,
+  export const settings: IBaseSettings = {
+    transports: {
+      rsyslog: {
+        enabled: true,
         settings: {
-          host:     process.env.RSYSLOG_HOST,
-          port:     process.env.RSYSLOG_PORT,
+          host: process.env.RSYSLOG_HOST,
+          port: process.env.RSYSLOG_PORT,
           hostname: process.env.RSYSLOG_HOSTNAME,
           facility: 0,   // Facility index (default 0, valid values are from 0 to 23)
           protocol: 'U', // TCP or UDP (values can be "U" or "T", default is "U")
-          tag:      'winston', // A tag to name the application for easy log filtering (default is 'winston')
-          level   : ''
+          tag: 'winston', // A tag to name the application for easy log filtering (default is 'winston')
+          level: ''
         }
       },
-      {
-        name: 'hipchat',
-        enabled:  false,
+      hipchat: {
+        enabled: false,
         settings: {
           // Required parameters
-          token:         process.env.HIPCHAT_TOKEN,
-          room:          '',
-          from:          'log-server', // 15 chars max
+          token: process.env.HIPCHAT_TOKEN,
+          room: '',
+          from: 'log-server', // 15 chars max
           // Optional parameters
-          level:         '',
-          notify:        false,
-          color:         'yellow',
+          level: '',
+          notify: false,
+          color: 'yellow',
           messageFormat: 'html'
         }
       }
-    ],
+    },
     defaultRequestLogLevel : 'info'
   };
 
@@ -90,4 +90,4 @@ module Config.DefaultSettings {
   ];
 }
 
-export = Config.DefaultSettings;
+export = Config.BaseSettings;
