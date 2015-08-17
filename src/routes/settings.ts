@@ -4,7 +4,7 @@ import settingsController = require('./../controllers/settings');
 module Routes.Settings {
 
   export const router = express.Router();
-  
+
   router.get('/settings', settingsController.get);
 }
 

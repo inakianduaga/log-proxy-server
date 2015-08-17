@@ -1,0 +1,60 @@
+{
+  "baseSettings" : {
+    "transports": {
+      "rsyslog": {
+        "enabled": true,
+        "settings": {
+          "host": "process.env.RSYSLOG_HOST",
+          "port": "process.env.RSYSLOG_PORT",
+          "hostname": "process.env.RSYSLOG_HOSTNAME",
+          "facility": 0,
+          "protocol": "U",
+          "tag": "winston",
+          "level": ""
+        }
+      },
+      "hipchat": {
+        "enabled": false,
+        "settings": {
+          "token": "process.env.HIPCHAT_TOKEN",
+          "room": "",
+          "from": "log-server",
+          "level": "",
+          "notify": false,
+          "color": "yellow",
+          "messageFormat": "html"
+        }
+      }
+    },
+    "defaultRequestLogLevel" : "info"
+  },
+  "groups" : [
+    {
+      "name": "nohipchat",
+      "transports": {
+        "hipchat": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "name": "angularApp",
+      "transports": {
+        "rsyslog": {
+          "enabled": true,
+          "settings": {
+            "tag": "angularApp"
+          }
+        },
+        "hipchat": {
+          "enabled": true,
+          "settings": {
+            "token": "process.env.HIPCHAT_TOKEN",
+            "room": "angular-app-room"
+          }
+        }
+      }
+    }
+  ]
+
+}
