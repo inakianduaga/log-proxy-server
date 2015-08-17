@@ -1,9 +1,11 @@
-'use strict';
-
 import express = require('express');
 import logController = require('./../controllers/logger');
-const router = express.Router();
 
-router.post('/log', logController.store);
+module Routes.LogEndpoints {
 
-export = router;
+  export const router = express.Router();
+
+  router.post('/log', logController.store);
+}
+
+export = Routes.LogEndpoints;

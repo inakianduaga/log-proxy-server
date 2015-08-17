@@ -1,9 +1,11 @@
-'use strict';
-
 import express = require('express');
 import settingsController = require('./../controllers/settings');
-const router = express.Router();
 
-router.get('/settings', settingsController.get);
+module Routes.Settings {
 
-export = router;
+  export const router = express.Router();
+  
+  router.get('/settings', settingsController.get);
+}
+
+export = Routes.Settings;

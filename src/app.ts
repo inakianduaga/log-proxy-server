@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public'))); //serve public files
 
-app.use(swaggerRoutes);
+app.use(swaggerRoutes.router);
 
 // Settings Middleware for all routes
 app.use(settings.parseRequestSettings);
@@ -42,9 +42,9 @@ app.use(settings.parseRequestSettings);
 app.use(winstonLogger.instantiateNewLogger);
 
 // Register routes (as middleware layer through express.Router())
-app.use(logEndpoints);
-app.use(miscRoutes);
-app.use(settingsRoutes);
+app.use(logEndpoints.router);
+app.use(miscRoutes.router);
+app.use(settingsRoutes.router);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

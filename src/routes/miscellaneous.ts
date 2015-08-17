@@ -1,9 +1,11 @@
-'use strict';
-
 import express = require('express');
 import miscController = require('./../controllers/miscellaneous');
-const router = express.Router();
 
-router.get('/', miscController.healthCheck);
+module Routes.Miscellaneous {
 
-export = router;
+  export const router = express.Router();
+
+  router.get('/', miscController.healthCheck);
+}
+
+export = Routes.Miscellaneous;
