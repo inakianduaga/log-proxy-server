@@ -1,7 +1,5 @@
 /// <reference path="./../../typings/node/node.d.ts" />
 
-'use strict';
-
 module Config.BaseSettings {
 
   // enum RsyslogProtocol { U, T }

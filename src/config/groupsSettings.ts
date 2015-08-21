@@ -1,7 +1,5 @@
 /// <reference path="./../../typings/node/node.d.ts" />
 
-'use strict';
-
 module Config.GroupsSettings {
 
   interface IGenericTransportOverride {
