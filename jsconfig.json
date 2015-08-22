@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target" : "es5",
+        "module": "commonjs"
+    },
+    "files": [
+        "src/**/*.ts",
+        "typings/**/*.ts",
+        "gulp/**/*.ts"
+    ]
+}

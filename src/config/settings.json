@@ -1,5 +1,5 @@
 {
-  "baseSettings" : {
+  "baseSettings": {
     "transports": {
       "rsyslog": {
         "enabled": true,
@@ -26,9 +26,9 @@
         }
       }
     },
-    "defaultRequestLogLevel" : "info"
+    "defaultRequestLogLevel": "info"
   },
-  "groups" : [
+  "groups": [
     {
       "name": "nohipchat",
       "transports": {
@@ -56,5 +56,4 @@
       }
     }
   ]
-
 }
