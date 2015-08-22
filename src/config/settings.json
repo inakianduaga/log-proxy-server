@@ -26,7 +26,7 @@
         }
       }
     },
-    "defaultRequestLogLevel": "info"
+    "logLevel": "info"
   },
   "groups": [
     {

@@ -18,7 +18,7 @@ module Config.Config {
     settings?: any;
   };
 
-  interface IRsyslogTransport extends IGenericTransport {
+  export interface IRsyslogTransport extends IGenericTransport {
     settings: {
       host: string,
       port: number,
@@ -42,7 +42,7 @@ module Config.Config {
     };
   };
 
-  interface IHipchatTransport extends IGenericTransport {
+  export interface IHipchatTransport extends IGenericTransport {
     settings: {
       token: string,
       room: string,
@@ -62,21 +62,30 @@ module Config.Config {
     };
   };
 
-  interface IBaseSettings {
+  export interface IBaseSettings {
     transports: {
       hipchat?: IHipchatTransport,
       rsyslog?: IRsyslogTransport,
     };
-    defaultRequestLogLevel: string;
+    logLevel: string;
   };
 
-  interface IGroupSettings {
+  export interface IGroupSettings {
     name: string;
+    transports?: {
+      hipchat?: IHipchatTransportOverride,
+      rsyslog?: IRsyslogTransportOverride,
+    };
+    logLevel?: string;
+  };
+
+  export interface IFullGroupSettings extends IGroupSettings {
     transports: {
       hipchat?: IHipchatTransportOverride,
       rsyslog?: IRsyslogTransportOverride,
     };
-  };
+    logLevel: string;
+  }
 
   export const groupSettings: Array<IGroupSettings> = settingsLoader.load().groups;
 

@@ -35,11 +35,8 @@ app.use(cookieParser());
 
 app.use(swaggerRoutes.router);
 
-// Settings Middleware for all routes
-app.use(settings.parseRequestSettings);
-
-// Register a new winston logger for each request
-app.use(winstonLogger.instantiateNewLogger);
+// Register settings-derived loggers
+app.use(winstonLogger.instantiateLoggers);
 
 // Register routes (as middleware layer through express.Router())
 app.use(logEndpoints.router);
