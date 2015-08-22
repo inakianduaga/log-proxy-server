@@ -7,7 +7,7 @@
 
 import express = require('express');
 import _ = require('lodash');
-import defaults = require('../config/defaultSettings');
+import config = require('../config/config');
 import objectUtils = require('../utils/object');
 
 module Services.Settings {
@@ -16,6 +16,15 @@ module Services.Settings {
     // requestHeaderSettingsField = defaults.settings.settingsRequestHeaderField, TODO: THIS IS NOW REPLACED BY A SETTINGS ID PARAMETER!
     settings,
     requestLogLevel: string;
+
+  /**
+   * The list of all groups
+   */
+  export function generateGroupsList(): string[] {
+    const names = [];
+    config.groupSettings.forEach( group => names.push[group.name]);
+    return names;
+  }
 
   /**
    * Builds the logger settings based on defaults and optional request settings header
