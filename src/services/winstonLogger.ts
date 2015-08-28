@@ -17,18 +17,10 @@ module Services.WinstonLogger {
     };
 
   /**
-   * Add transport to a logger based on given settings
-   */
-  function registerGroupTransports(logger: winston.LoggerInstance, transports: Array<config.IGenericTransport>) {
-    transports
-      .filter(transport => transport.enabled)
-      .forEach(transport => logger.add(availableTransports[transport.name], transport.settings));
-  }
-
-  /**
    * Middleware for registering a winston logger instance for each of the groups defined in config
    */
   export function instantiateLoggers(req: express.Request, res: express.Response, next: Function) {
+    console.log(settingsService.generateGroupsList());
     settingsService.generateGroupsList().forEach(group => {
       const groupFullSettings = settingsService.getFullGroupsSettings(group);
       const groupLoggerInstance = winston.loggers.add(group, {
@@ -42,7 +34,20 @@ module Services.WinstonLogger {
   }
 
   export function getGroupLogger(group: string): winston.LoggerInstance {
+    if (!winston.loggers.has(group)) {
+      throw new Error('invalid group');
+    }
+
     return winston.loggers.get(group);
+  }
+
+  /**
+   * Add transport to a logger based on given settings
+   */
+  function registerGroupTransports(logger: winston.LoggerInstance, transports: Array<config.IGenericTransport>) {
+    transports
+      .filter(transport => transport.enabled)
+      .forEach(transport => logger.add(availableTransports[transport.name], transport.settings));
   }
 
 }

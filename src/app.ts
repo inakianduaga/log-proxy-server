@@ -12,7 +12,6 @@ import bodyParser = require('body-parser');
 // Modular Route definitions
 import logEndpoints = require('./routes/logEndpoints');
 import miscRoutes = require('./routes/miscellaneous');
-import settingsRoutes = require('./routes/settings');
 import swaggerRoutes = require('./routes/swagger');
 
 // Services
@@ -40,7 +39,6 @@ app.use(winstonLogger.instantiateLoggers);
 // Register routes (as middleware layer through express.Router())
 app.use(logEndpoints.router);
 app.use(miscRoutes.router);
-app.use(settingsRoutes.router);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

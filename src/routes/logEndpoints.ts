@@ -5,7 +5,7 @@ module Routes.LogEndpoints {
 
   export const router = express.Router();
 
-  router.post('/log', logController.store);
+  router.post('/log/:endpoint', logController.store);
 }
 
 export = Routes.LogEndpoints;

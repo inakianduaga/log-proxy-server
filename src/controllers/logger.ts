@@ -13,11 +13,16 @@ module Controllers.Logger {
    */
   export function store(req: express.Request, res: express.Response) {
 
-    const winstonLogger = loggerService.getGroupLogger(req.query.group),
-        payload = req.body,
-        level = req.query.log_level;
+    try {
+      const winstonLogger = loggerService.getGroupLogger(req.params.endpoint),
+        payload = req.body.message,
+        level = req.body.level;
 
-    winstonLogger.log(level, payload);
+      console.log('logging!');
+      winstonLogger.log(level, payload);
+    } catch (error) {
+      res.status(404);
+    }
 
     res.end();
   }

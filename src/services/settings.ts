@@ -10,13 +10,8 @@ import config = require('../config/config');
 
 module Services.Settings {
 
-  let names: string[] = [];
-
   export function generateGroupsList(): string[] {
-    return config.groupSettings.reduce((names, group) => {
-      names.push[group.name];
-      return names;
-    }, names);
+    return config.groupSettings.map(group => group.name);
   }
 
   export function getFullGroupsSettings(group: string): config.IFullGroupSettings {

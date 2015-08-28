@@ -6,12 +6,12 @@
     version: "1.0.0"
   host: "localhost:3000"
   schemes:
-    - "https"
+    - "http"
   basePath: "/"
   produces:
     - "application/json"
   paths:
-    /log:
+    /log/{endpoint}:
       post:
         summary: "Logs to a proxy endpoint"
         description: "Logs the message to a preconfigured endpoint"
@@ -34,9 +34,15 @@
             description: "the log level"
             required: true
             type: "string"
+            enum: ["silly", "debug", "verbose", "info", "warn", "error"]
+            default: "info"
         responses:
           200:
             description: "empty acknowledgement"
+            schema:
+              type: "string"
+          404:
+            description: "invalid endpoint"
             schema:
               type: "string"
           default:

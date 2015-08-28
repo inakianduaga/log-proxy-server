@@ -2,7 +2,7 @@
 
 module Config.Load {
   export function load() {
-    return JSON.parse(require('./settings.json'));
+    return require('./settings.json');
   }
 }
 
