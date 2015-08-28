@@ -5,26 +5,18 @@
 // Logger settings middleware
 // Builds the logging configuration based on default settings & request settings
 
-import express = require('express');
 import _ = require('lodash');
 import config = require('../config/config');
-import objectUtils = require('../utils/object');
 
 module Services.Settings {
 
-  let
-    settings,
-    requestLogLevel: string;
-
   export function generateGroupsList(): string[] {
     return config.groupSettings.reduce((names, group) => {
-      names.push[group.name];
-      return names;
+      return names.push[group.name] && names;
     }, []);
   }
 
   export function getFullGroupsSettings(group: string): config.IFullGroupSettings {
-
     const groupSpecificSettings = getGroupSpecificSettings(group),
       baseSettings = config.baseSettings;
 
@@ -32,27 +24,27 @@ module Services.Settings {
       name: groupSpecificSettings.name,
       logLevel: groupSpecificSettings.logLevel || baseSettings.logLevel,
       transports: mergeTransportsWithMatchingOverrides(baseSettings.transports, groupSpecificSettings.transports)
-    }
+    };
   }
 
   function getGroupSpecificSettings(groupId: string): config.IGroupSettings {
     return config.groupSettings.filter(group => group.name === groupId)[0];
   }
 
-  function mergeTransportsWithMatchingOverrides(transports: config.IGenericTransport[], overrides: config.IGenericTransportOverride[]): config.IGenericTransport[] {
+  function mergeTransportsWithMatchingOverrides(
+    transports: config.IGenericTransport[], overrides: config.IGenericTransportOverride[]): config.IGenericTransport[] {
     return transports.reduce((mergedTransports, transport) => {
       const potentialOverride = overrides.filter(override => override.name === transport.name)[0];
 
       if (potentialOverride) {
-        mergedTransports.push(_.merge(transport, potentialOverride))
+        mergedTransports.push(_.merge(transport, potentialOverride));
       } else {
         mergedTransports.push(transport);
       }
 
       return mergedTransports;
-    },[]);
+    }, []);
   }
-
 
 }
 

@@ -12,10 +12,9 @@ module Services.WinstonLogger {
 
   let
     availableTransports = {
-      hipchat : require('winston-hipchat').Hipchat,
-      rsyslog : require('winston-rsyslog').Rsyslog
-    },
-    loggerInstance: winston.LoggerInstance;
+      hipchat: require('winston-hipchat').Hipchat,
+      rsyslog: require('winston-rsyslog').Rsyslog
+    };
 
   /**
    * Add transport to a logger based on given settings
@@ -29,8 +28,7 @@ module Services.WinstonLogger {
   /**
    * Middleware for registering a winston logger instance for each of the groups defined in config
    */
-  export function instantiateLoggers(req: express.Request, res: express.Response, next: Function)
-  {
+  export function instantiateLoggers(req: express.Request, res: express.Response, next: Function) {
     settingsService.generateGroupsList().forEach(group => {
       const groupFullSettings = settingsService.getFullGroupsSettings(group);
       const groupLoggerInstance = winston.loggers.add(group, {

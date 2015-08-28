@@ -17,7 +17,6 @@ import swaggerRoutes = require('./routes/swagger');
 
 // Services
 import errorHandler = require('./services/errorHandler');
-import settings = require('./services/settings');
 import winstonLogger = require('./services/winstonLogger');
 
 // Main app

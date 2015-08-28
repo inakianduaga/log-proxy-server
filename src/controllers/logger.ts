@@ -1,7 +1,6 @@
 'use strict';
 
 import loggerService = require('./../services/winstonLogger');
-import settingsService = require('./../services/settings');
 import express = require('express');
 
 /**

@@ -1,8 +1,8 @@
-/// <reference path="./../../typings/node/node.d.ts" />
-
 import settingsLoader = require('./loader');
 
 module Configuration {
+
+  'use strict';
 
   // enum RsyslogProtocol { U, T }
   // enum HipchatMessageFormat { html }
