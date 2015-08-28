@@ -1,7 +1,8 @@
 {
   "baseSettings": {
-    "transports": {
-      "rsyslog": {
+    "transports": [
+      {
+        "name": "rsyslog",
         "enabled": true,
         "settings": {
           "host": "process.env.RSYSLOG_HOST",
@@ -13,7 +14,8 @@
           "level": ""
         }
       },
-      "hipchat": {
+      {
+        "name" : "hipchat",
         "enabled": false,
         "settings": {
           "token": "process.env.HIPCHAT_TOKEN",
@@ -25,35 +27,38 @@
           "messageFormat": "html"
         }
       }
-    },
+    ],
     "logLevel": "info"
   },
   "groups": [
     {
       "name": "nohipchat",
-      "transports": {
-        "hipchat": {
+      "transports": [
+        {
+          "name" : "hipchat",
           "enabled": false
         }
-      }
+      ]
     },
     {
       "name": "angularApp",
-      "transports": {
-        "rsyslog": {
+      "transports": [
+        {
+          "name" : "rsyslog",
           "enabled": true,
           "settings": {
             "tag": "angularApp"
           }
         },
-        "hipchat": {
+        {
+          "name": "hipchat",
           "enabled": true,
           "settings": {
             "token": "process.env.HIPCHAT_TOKEN",
             "room": "angular-app-room"
           }
         }
-      }
+      ]
     }
   ]
 }

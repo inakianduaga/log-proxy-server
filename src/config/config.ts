@@ -2,18 +2,20 @@
 
 import settingsLoader = require('./loader');
 
-module Config.Config {
+module Configuration {
 
   // enum RsyslogProtocol { U, T }
   // enum HipchatMessageFormat { html }
   // enum RequestLogLevel {silly, debug, verbose, info, warn, error}
 
-  interface IGenericTransport {
+  export interface IGenericTransport {
+    name: string;
     enabled: boolean;
     settings: any;
   };
 
-  interface IGenericTransportOverride {
+  export interface IGenericTransportOverride {
+    name: string;
     enabled?: boolean;
     settings?: any;
   };
@@ -63,28 +65,18 @@ module Config.Config {
   };
 
   export interface IBaseSettings {
-    transports: {
-      hipchat?: IHipchatTransport,
-      rsyslog?: IRsyslogTransport,
-    };
+    transports: IGenericTransport[];
     logLevel: string;
   };
 
   export interface IGroupSettings {
     name: string;
-    transports?: {
-      hipchat?: IHipchatTransportOverride,
-      rsyslog?: IRsyslogTransportOverride,
-    };
+    transports?: IGenericTransportOverride[];
     logLevel?: string;
   };
 
-  export interface IFullGroupSettings extends IGroupSettings {
-    transports: {
-      hipchat?: IHipchatTransportOverride,
-      rsyslog?: IRsyslogTransportOverride,
-    };
-    logLevel: string;
+  export interface IFullGroupSettings extends IBaseSettings {
+    name: string;
   }
 
   export const groupSettings: Array<IGroupSettings> = settingsLoader.load().groups;
@@ -101,4 +93,4 @@ module Config.Config {
   ];
 }
 
-export = Config.Config;
+export = Configuration;

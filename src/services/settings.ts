@@ -13,23 +13,46 @@ import objectUtils = require('../utils/object');
 module Services.Settings {
 
   let
-    // requestHeaderSettingsField = defaults.settings.settingsRequestHeaderField, TODO: THIS IS NOW REPLACED BY A SETTINGS ID PARAMETER!
     settings,
     requestLogLevel: string;
 
   export function generateGroupsList(): string[] {
-    const names = [];
-    config.groupSettings.forEach( group => names.push[group.name]);
-    return names;
+    return config.groupSettings.reduce((names, group) => {
+      names.push[group.name];
+      return names;
+    }, []);
   }
 
   export function getFullGroupsSettings(group: string): config.IFullGroupSettings {
-    return _.merge(config.baseSettings, getGroupSpecificSettings(group));
+
+    const groupSpecificSettings = getGroupSpecificSettings(group),
+      baseSettings = config.baseSettings;
+
+    return {
+      name: groupSpecificSettings.name,
+      logLevel: groupSpecificSettings.logLevel || baseSettings.logLevel,
+      transports: mergeTransportsWithMatchingOverrides(baseSettings.transports, groupSpecificSettings.transports)
+    }
   }
 
-  function getGroupSpecificSettings(group: string): config.IGroupSettings {
-    return config.groupSettings.filter((value: config.IGroupSettings) => value === group).shift;
+  function getGroupSpecificSettings(groupId: string): config.IGroupSettings {
+    return config.groupSettings.filter(group => group.name === groupId)[0];
   }
+
+  function mergeTransportsWithMatchingOverrides(transports: config.IGenericTransport[], overrides: config.IGenericTransportOverride[]): config.IGenericTransport[] {
+    return transports.reduce((mergedTransports, transport) => {
+      const potentialOverride = overrides.filter(override => override.name === transport.name)[0];
+
+      if (potentialOverride) {
+        mergedTransports.push(_.merge(transport, potentialOverride))
+      } else {
+        mergedTransports.push(transport);
+      }
+
+      return mergedTransports;
+    },[]);
+  }
+
 
 }
 

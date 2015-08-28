@@ -1,3 +1,4 @@
+/// <reference path="./../../typings/express/express.d.ts" />
 'use strict';
 
 import express = require('express');

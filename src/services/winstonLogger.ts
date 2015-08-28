@@ -17,7 +17,6 @@ module Services.WinstonLogger {
     },
     loggerInstance: winston.LoggerInstance;
 
-
   /**
    * Add transport to a logger based on given settings
    */
@@ -33,7 +32,6 @@ module Services.WinstonLogger {
   export function instantiateLoggers(req: express.Request, res: express.Response, next: Function)
   {
     settingsService.generateGroupsList().forEach(group => {
-
       const groupFullSettings = settingsService.getFullGroupsSettings(group);
       const groupLoggerInstance = winston.loggers.add(group, {
         level: groupFullSettings.logLevel
