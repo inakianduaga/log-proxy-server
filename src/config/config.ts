@@ -66,13 +66,11 @@ module Configuration {
 
   export interface IBaseSettings {
     transports: IGenericTransport[];
-    logLevel: string;
   };
 
   export interface IGroupSettings {
     name: string;
     transports?: IGenericTransportOverride[];
-    logLevel?: string;
   };
 
   export interface IFullGroupSettings extends IBaseSettings {
