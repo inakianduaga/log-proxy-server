@@ -20,7 +20,6 @@ module Services.Settings {
 
     return {
       name: groupSpecificSettings.name,
-      logLevel: groupSpecificSettings.logLevel || baseSettings.logLevel,
       transports: mergeTransportsWithMatchingOverrides(baseSettings.transports, groupSpecificSettings.transports)
     };
   }
