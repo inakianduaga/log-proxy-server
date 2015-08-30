@@ -5,9 +5,9 @@
         "name": "rsyslog",
         "enabled": true,
         "settings": {
-          "host": "process.env.RSYSLOG_HOST",
-          "port": "process.env.RSYSLOG_PORT",
-          "hostname": "process.env.RSYSLOG_HOSTNAME",
+          "host": "localhost",
+          "port": "514",
+          "hostname": "foo",
           "facility": 0,
           "protocol": "U",
           "tag": "winston",
@@ -18,7 +18,7 @@
         "name" : "hipchat",
         "enabled": false,
         "settings": {
-          "token": "process.env.HIPCHAT_TOKEN",
+          "token": "HIPCHAT_TOKEN_HERE",
           "room": "",
           "from": "log-server",
           "level": "info",
@@ -54,7 +54,6 @@
           "name": "hipchat",
           "enabled": true,
           "settings": {
-            "token": "process.env.HIPCHAT_TOKEN",
             "room": "angular-app-room"
           }
         }
