@@ -2,7 +2,7 @@
 
 module Config.Load {
   export function load() {
-    return require('./settings.json');
+    return process.env.SETTINGS_FILE_PATH ? require('process.env.SETTINGS_FILE_PATH') : require('./settings.json');
   }
 }
 

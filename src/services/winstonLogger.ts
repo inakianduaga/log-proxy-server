@@ -6,12 +6,15 @@
 import winston = require('winston');
 import express = require('express');
 import settingsService = require('./settings');
-import config = require('../config/config');
 
 module Services.WinstonLogger {
 
   let
     availableTransports = {
+      file: winston.transports.File,
+      dailyRotateFile: winston.transports.DailyRotateFile,
+      http: winston.transports.Http,
+      console: winston.transports.Console,
       hipchat: require('winston-hipchat').Hipchat,
       rsyslog: require('winston-rsyslog2').Rsyslog
     },
@@ -28,9 +31,7 @@ module Services.WinstonLogger {
           let loggerInstance = winston.loggers.add(fullGroupSettings.name, {});
           fullGroupSettings.transports
             .filter(transport => transport.enabled)
-            .forEach(transport => {
-              loggerInstance.add(availableTransports[transport.name], transport.settings)
-            })
+            .forEach(transport => loggerInstance.add(availableTransports[transport.name], transport.settings));
         });
       instantiated = true;
     }
