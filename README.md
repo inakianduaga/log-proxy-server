@@ -7,7 +7,17 @@ Log Proxy Server
 
 ## Configuration
 
-Use the provided `.env.example` file to generate a `.env` file from which to set configuration parameters. Other parameters are included in `./config/defaultSettings.js`
+#### Server configuration
+
+You can use the provided `.env.example` file to generate a `.env` file from which to set server configuration parameters, included settings filepath. Otherwise you can always use env variables.
+
+#### Logger configuration
+
+The server log configuration groups and transports has to be provided through a json file, see [./config/settings.json](./config/settings.json) as an example. The configuration is split
+into 2 blocks:
+
+- `baseSettings`: This is optional, and includes log transports that will be added to all configuration groups.
+- `groups`: These are the different log endpoints, with the transport configuration for each one. They will overwrite any baseSettings in case of collision.
 
 ## Installation
 
