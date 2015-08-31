@@ -31,7 +31,7 @@ module Services.WinstonLogger {
           let loggerInstance = winston.loggers.add(fullGroupSettings.name, {});
           fullGroupSettings.transports
             .filter(transport => transport.enabled)
-            .forEach(transport => loggerInstance.add(new availableTransports[transport.name], transport.settings));
+            .forEach(transport => loggerInstance.add(availableTransports[transport.name], transport.settings));
         });
       instantiated = true;
     }
